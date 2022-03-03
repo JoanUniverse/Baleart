@@ -1,24 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
+import Login from './components/Login';
+import Exposicions from './components/Exposicions';
+// npm install react-router-dom
+// npm install react-bootstrap bootstrap
+// npm install axios
+// npm install --save ag-grid-community ag-grid-react
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Prova
-        </a>
-      </header>
-    </div>
+    // <Login />
+    <Exposicions/>
   );
 }
 
