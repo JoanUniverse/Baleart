@@ -11,6 +11,10 @@ export default class Login extends Component {
         }
     }
 
+    componentDidMount(){
+
+    }
+
     login = () => {
         let formData = new FormData();
         formData.append("email_usuari", this.state.email);
@@ -18,7 +22,8 @@ export default class Login extends Component {
         axios.post("http://baleart.projectebaleart.com/public/api/login", formData,
         ).then(resposta => {
             console.log(resposta);
-            document.cookie = "token=" + resposta.data.result;
+            sessionStorage.setItem("token", resposta.data.result);
+            console.log(sessionStorage.getItem("token"));
         }
         ).catch(error => {
             console.log(error);

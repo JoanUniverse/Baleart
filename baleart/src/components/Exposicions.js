@@ -32,7 +32,8 @@ export default class Exposicions extends Component {
     }
     componentDidMount() {
         const config = {
-            headers: { Authorization: 'Bearer MGNDdnhDRU9sR2pJSkJuaXBRSEhNa1oyZFZsWUlWQnZPdWg0RXUxMg==' }
+            headers: { Authorization: 'Bearer ' + sessionStorage.getItem("token")}
+            //headers: { Authorization: 'Bearer ' + "token"}
         };
         axios.get('http://baleart.projectebaleart.com/public/api/exposicions', config)
             .then(response => {
@@ -40,7 +41,10 @@ export default class Exposicions extends Component {
                 this.setState({ exposicions: response.data });
             })
             .catch(function (error) {
-                console.log(error);
+                console.log("ERROR -> " + error.response.data.error);
+                if(error.response.status == 401){
+                    //window.location.assign("/login");
+                }
             })
     }
 
