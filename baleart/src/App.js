@@ -1,7 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
 import Login from './components/Login';
 import Exposicions from './components/Exposicions';
+import Autors from './components/Autors';
+import Espais from './components/Espais';
+import Registre from './components/Registre';
+import Modalitats from './components/Modalitats';
+import Autor from './components/Autor';
+import Espai from './components/Espai';
+import Menu from './components/Menu';
 // npm install react-router-dom
 // npm install react-bootstrap bootstrap
 // npm install axios
@@ -9,8 +15,15 @@ import Exposicions from './components/Exposicions';
 
 function App() {
   return (
-    // <Login />
-    <Exposicions/>
+    //<Login />
+    //<Exposicions/>
+    //<Autors/>
+    //<Autor />
+    //<Espai />
+    //<Espais />
+    //<Registre />
+    //<Modalitats />
+    <Menu />
   );
 }
 
