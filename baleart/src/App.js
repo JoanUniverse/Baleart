@@ -9,7 +9,7 @@ import Exposicions from './components/Exposicions';
 
 function App() {
   return (
-    // <Login />
+    //<Login />
     <Exposicions/>
   );
 }
