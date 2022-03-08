@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button, Container, ListGroup } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import axios from 'axios';
 import { AgGridReact } from 'ag-grid-react';
 
@@ -19,11 +19,11 @@ export default class Autors extends Component {
             </div>
         }
 
-        const botoEsborrar = (params) => {
+        const botoEsborrar = () => {
             return <div>
                 <Button variant='danger' size="sm"
-                    onClick={() => { window.location.assign("/autor/" + params.data.id_autor); }}>
-                    Borra
+                    onClick={this.delete}>
+                    Borrar
                 </Button>
             </div>
         }
@@ -39,7 +39,7 @@ export default class Autors extends Component {
                 { field: 'id_autor', headerName: '', cellRendererFramework: pintaBoto, maxWidth: 100 },
                 { field: 'id_autor', headerName: '', cellRendererFramework: botoEsborrar, maxWidth: 100 }
             ],
-            codi_autor: -1,
+            id_autor: -1,
         }
     }
 
@@ -61,9 +61,36 @@ export default class Autors extends Component {
             })
     }
 
+    delete = (id_autor) => {
+        const config = {
+            headers: { Authorization: 'Bearer ' + sessionStorage.getItem("token") }
+        };
+        axios.delete('http://baleart.projectebaleart.com/public/api/autors/' + id_autor, config
+        ).then(response => {
+            console.log(response);
+            alert("Autor esborrat amb èxit!");
+        })
+            .catch(error => {
+                console.log(error);
+
+            })
+    }
+
     render() {
         return (
             <div className="ag-theme-alpine" style={{ height: 600, width: "100%" }}>
+                <div className='row'>
+                    <div className="row"><div className="col-md-4">&nbsp;</div></div>
+                    <div className="col-md-4">
+                        <Button variant='success'
+                            onClick={() => { window.location.assign("/autor/-1"); }}>
+                            Afegir nou autor
+                        </Button>
+                    </div>
+                    <div className="col-md-4">
+                        <h1>Llistat d'autors</h1>
+                    </div>
+                </div>
                 <AgGridReact
                     rowData={this.state.autors}
                     columnDefs={this.state.columnes}

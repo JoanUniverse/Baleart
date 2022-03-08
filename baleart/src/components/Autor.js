@@ -16,7 +16,7 @@ export default class Autor extends Component {
     }
 
     componentDidMount() {
-        if (this.props.id_autor !== -1) {
+        if (this.props.id_autor != -1) {
             this.descarrega(this.props.id_autor);
         }
     }
@@ -45,6 +45,31 @@ export default class Autor extends Component {
 
     update = () => {
         //Modificar les dades a la api
+        let formData = new URLSearchParams();
+        formData.append("nom_autor", this.state.nom_autor);
+        formData.append("llinatges", this.state.llinatges);
+        formData.append("nacionalitat", this.state.nacionalitat);
+        formData.append("biografia", this.state.biografia);
+        //Token
+        const config = {
+            headers: {
+                Authorization: 'Bearer ' + sessionStorage.getItem("token"),
+                'content-type': 'application/x-www-form-urlencoded'
+            }
+        };
+        axios.put('http://baleart.projectebaleart.com/public/api/autors/' + this.state.id_autor, formData,
+            config,
+        ).then(response => {
+            console.log(response);
+            alert("Modificació feta amb èxit!");
+        }
+        ).catch(error => {
+            console.log(error);
+        });
+    }
+
+    inserta = () => {
+        //Modificar les dades a la api
         let formData = new FormData();
         formData.append("nom_autor", this.state.nom_autor);
         formData.append("llinatges", this.state.llinatges);
@@ -52,18 +77,19 @@ export default class Autor extends Component {
         formData.append("biografia", this.state.biografia);
         //Token
         const config = {
-            headers: { Authorization: 'Bearer ' + sessionStorage.getItem("token") }
-            //headers: { Authorization: 'Bearer ' + "token"}
+            headers: {
+                Authorization: 'Bearer ' + sessionStorage.getItem("token"),
+                'content-type': 'application/x-www-form-urlencoded'
+            }
         };
-        axios.put('http://baleart.projectebaleart.com/public/api/autors/' + this.state.id_autor, config,
-            formData,
+        axios.post('http://baleart.projectebaleart.com/public/api/autors', formData,
+            config,
         ).then(response => {
             console.log(response);
-            alert("Modificació feta amb èxit!");
+            alert("Insertat amb èxit!");
         }
         ).catch(error => {
             console.log(error);
-            console.log(sessionStorage.getItem("token"));
         });
     }
 
@@ -73,11 +99,19 @@ export default class Autor extends Component {
         })
     }
 
+    enviaFormulari = () => {
+        if (this.state.id_autor === '') {
+            this.inserta();
+        } else {
+            this.update();
+        }
+    }
+
     render() {
         return (
             <Container>
                 <hr />
-                <h2>Modifica un autor</h2>
+                <h2>{this.state.id_autor === '' ? "Insertar" : "Modifica"} un autor</h2>
                 <br />
                 <div className='row'>
                     <div className="col-md-2">
@@ -120,7 +154,7 @@ export default class Autor extends Component {
                     <div className="col-md-5">
                         <div className="form-group">
                             <input type="submit" className="btn btn-primary"
-                                value={"Modifica"} onClick={this.update} />
+                                value={this.state.id_autor === '' ? "Insertar" : "Modifica"} onClick={this.enviaFormulari} />
                         </div>
                     </div>
                 </div>
