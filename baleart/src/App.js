@@ -1,5 +1,6 @@
 import './App.css';
 import Login from './components/Login';
+import Menu from './components/Menu';
 import Exposicions from './components/Exposicions';
 import Autors from './components/Autors';
 import Espais from './components/Espais';
@@ -20,6 +21,7 @@ function App() {
   } else{
     return <Login/>
   }
+
 }
 
 export default App;

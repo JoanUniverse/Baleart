@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import { BrowserRouter, NavLink, Route, Routes, useParams } from "react-router-dom";
 //import Comentaris from './Comentaris';
 //import Obres from './Obres';
@@ -55,11 +56,10 @@ export default class Menu extends Component {
                     {/* <Route path='/usuaris' element={<Usuaris />} /> */}
                 </Routes>
             </BrowserRouter>
-
         )
     }
-}
 
+}
 
 function CridaExposicio() {
     let params = useParams();
