@@ -12,6 +12,7 @@ import Modalitats from './Modalitats';
 import Exposicio from './Exposicio';
 import Autor from './Autor';
 import Espai from './Espai';
+import Modalitat from './Modalitat';
 export default class Menu extends Component {
     render() {
         return (
@@ -43,10 +44,11 @@ export default class Menu extends Component {
                     <Route path='/autor/:id_autor' element={<CridaAutor />} />
                     {/* <Route path="/comentaris" element={<Comentaris />} /> */}
                     <Route path='/espais' element={<Espais />} />
-                    <Route path='/exposicio/:id_exposicio' element={<CridaExposicio />} />
                     <Route path='/espai/:id_espai' element={<CridaEspai />} />
+                    <Route path='/exposicio/:id_exposicio' element={<CridaExposicio />} />
                     <Route path='/exposicions' element={<Exposicions />} />
                     <Route path='/modalitats' element={<Modalitats />} />
+                    <Route path='/modalitat/:id_modalitat' element={<CridaModalitat />} />
                     {/* <Route path="/obres" element={<Obres />} /> */}
                     {/* <Route path='/serveis' element={<Serveis />} /> */}
                     {/* <Route path='/tipus' element={<Tipus />} /> */}
@@ -73,4 +75,9 @@ function CridaAutor() {
 function CridaEspai() {
     let params = useParams();
     return <Espai id_espai={params.id_espai} />
+}
+
+function CridaModalitat() {
+    let params = useParams();
+    return <Modalitat id_modalitat={params.id_modalitat} />
 }
