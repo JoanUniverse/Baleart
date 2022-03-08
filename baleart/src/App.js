@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import Login from './components/Login';
+import Menu from './components/Menu';
 import Exposicions from './components/Exposicions';
 // npm install react-router-dom
 // npm install react-bootstrap bootstrap
@@ -10,7 +11,7 @@ import Exposicions from './components/Exposicions';
 function App() {
   return (
     // <Login />
-    <Exposicions/>
+    <Menu/>
   );
 }
 
