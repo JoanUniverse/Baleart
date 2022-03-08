@@ -59,9 +59,10 @@ export default class Menu extends Component {
 }
 
 
-function CridaExposicio(){
+function CridaExposicio() {
     let params = useParams();
-    return <Exposicio id_exposicio={params.id_exposicio}/>
+    return <Exposicio id_exposicio={params.id_exposicio} />
+}
 
 function CridaAutor() {
     let params = useParams();
