@@ -23,10 +23,12 @@ export default class Login extends Component {
         ).then(resposta => {
             console.log(resposta);
             sessionStorage.setItem("token", resposta.data.result);
+            window.location.assign("/");
             console.log(sessionStorage.getItem("token"));
         }
         ).catch(error => {
             console.log(error);
+            sessionStorage.setItem("token", "");
         })
     }
 

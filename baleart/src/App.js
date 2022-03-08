@@ -14,17 +14,12 @@ import Menu from './components/Menu';
 // npm install --save ag-grid-community ag-grid-react
 
 function App() {
-  return (
-    //<Login />
-    //<Exposicions/>
-    //<Autors/>
-    //<Autor />
-    //<Espai />
-    //<Espais />
-    //<Registre />
-    //<Modalitats />
-    <Menu />
-  );
+  console.log(sessionStorage.getItem("token"));
+  if(sessionStorage.getItem("token") != "" && sessionStorage.getItem("token") != null){
+    return <Menu/>
+  } else{
+    return <Login/>
+  }
 }
 
 export default App;

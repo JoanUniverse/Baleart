@@ -6,14 +6,14 @@ import { AgGridReact } from 'ag-grid-react';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
-export default class Exposicions extends Component {
+export default class Usuaris extends Component {
     constructor(props) {
         super(props);
 
         const pintaBoto=(params)=>{
             return <div>
                 <Button color="primary" size="sm"
-                    onClick={() => {window.location.assign("/exposicio/" + params.data.id_exposicio)}}>
+                    onClick={() => {window.location.assign("/usuaris/" + params.data.id_usuari)}}>
                     Edita
                 </Button>
             </div>
@@ -23,7 +23,7 @@ export default class Exposicions extends Component {
             return <div>
                 <Button variant="danger" size="sm"
                     onClick={() => {
-                        if(window.confirm("Segur vols borrar l'exposició?")){
+                        if(window.confirm("Segur vols borrar l'usuari?")){
                             this.borrar(params.data.id_exposicio);
                         }
                     }}>
