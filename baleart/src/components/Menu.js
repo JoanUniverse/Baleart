@@ -64,6 +64,7 @@ function CridaExposicio() {
     return <Exposicio id_exposicio={params.id_exposicio} />
 }
 
+
 function CridaAutor() {
     let params = useParams();
     return <Autor id_autor={params.id_autor} />
