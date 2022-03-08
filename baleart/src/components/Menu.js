@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import { BrowserRouter, NavLink, Route, Routes, useParams } from "react-router-dom";
 //import Comentaris from './Comentaris';
 //import Obres from './Obres';
@@ -19,6 +20,7 @@ export default class Menu extends Component {
                 <Navbar bg="dark" className="color-nav" variant="dark" expand="lg" sticky="top">
                     <Container>
                         <Nav className="mr-auto">
+
                             <NavLink className="nav-link" to="/autors" >Autors</NavLink>
                             <NavLink className="nav-link" to="/comentaris" >Comentaris</NavLink>
                             <NavLink className="nav-link" to="/espais" >Espais</NavLink>
@@ -51,11 +53,32 @@ export default class Menu extends Component {
                     {/* <Route path='/serveis' element={<Serveis />} /> */}
                     {/* <Route path='/tipus' element={<Tipus />} /> */}
                     {/* <Route path='/usuaris' element={<Usuaris />} /> */}
+
+                            <NavLink className="nav-link" to="/obres">Obres </NavLink>
+                            <NavLink className="nav-link" to="/comentaris" >Comentaris</NavLink>
+                            <NavLink className="nav-link" to="/comentaris" >Comentaris</NavLink>
+                            <NavLink className="nav-link" to="/comentaris" >Comentaris</NavLink>
+                            <NavLink className="nav-link" to="/comentaris" >Comentaris</NavLink>
+                            <NavLink className="nav-link" to="/comentaris" >Comentaris</NavLink>
+                            <NavLink className="nav-link" to="/comentaris" >Comentaris</NavLink>
+                            <NavLink className="nav-link" to="/comentaris" >Comentaris</NavLink>
+                            <NavLink className="nav-link" to="/comentaris" >Comentaris</NavLink>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </Nav>
+                            <input class="form-control mr-sm-2" type="search" placeholder="Cercar espai..." aria-label="Search"></input>
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Cercar</button>
+                       
+                    </Container>
+                </Navbar>
+                <Routes>
+                    <Route path="/obres" element={<Obres />} />
+                    <Route path="/comentaris" element={<Comentaris />} />
+
                 </Routes>
             </BrowserRouter>
 
         )
     }
+
 }
 
 
@@ -73,4 +96,5 @@ function CridaAutor() {
 function CridaEspai() {
     let params = useParams();
     return <Espai id_espai={params.id_espai} />
+
 }
