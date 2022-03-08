@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, NavLink, Route, Routes } from "react-router-dom";
+import { BrowserRouter, NavLink, Route, Routes, useParams } from "react-router-dom";
 //import Comentaris from './Comentaris';
 //import Obres from './Obres';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -9,6 +9,7 @@ import Autors from './Autors';
 import Espais from './Espais';
 import Exposicions from './Exposicions';
 import Modalitats from './Modalitats';
+import Exposicio from './Exposicio';
 export default class Menu extends Component {
     render() {
         return (
@@ -24,12 +25,12 @@ export default class Menu extends Component {
                             <NavLink className="nav-link" to="/obres">Obres</NavLink>
                             <NavLink className="nav-link" to="/serveis" >Serveis</NavLink>
                             <NavLink className="nav-link" to="/tipus" >Tipus</NavLink>
-                            <NavLink className="nav-link" to="/usuaris" >Usuaris</NavLink>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <NavLink className="nav-link" to="/usuaris" >Usuaris</NavLink>
 
                         </Nav>
 
-                        <input class="form-control mr-sm-2" type="search" placeholder="Cercar espai..." aria-label="Search"></input>
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Cercar</button>
+                        <input className="form-control mr-sm-2" type="search" placeholder="Cercar espai..." aria-label="Search"></input>
+                        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Cercar</button>
 
                     </Container>
                 </Navbar>
@@ -37,6 +38,7 @@ export default class Menu extends Component {
                     <Route path='/autors' element={<Autors />} />
                     {/* <Route path="/comentaris" element={<Comentaris />} /> */}
                     <Route path='/espais' element={<Espais />} />
+                    <Route path='/exposicio/:id_exposicio' element={<CridaExposicio />} />
                     <Route path='/exposicions' element={<Exposicions />} />
                     <Route path='/modalitats' element={<Modalitats />} />
                     {/* <Route path="/obres" element={<Obres />} /> */}
@@ -48,4 +50,9 @@ export default class Menu extends Component {
 
         )
     }
+}
+
+function CridaExposicio(){
+    let params = useParams();
+    return <Exposicio id_exposicio={params.id_exposicio}/>
 }

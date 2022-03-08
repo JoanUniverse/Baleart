@@ -13,7 +13,7 @@ export default class Exposicions extends Component {
         const pintaBoto=(params)=>{
             return <div>
                 <Button color="primary" size="sm"
-                onClick={() => console.log(params.data.id_exposicio) /*{window.location.assign("exposicio/" + params.data.codiusuari)}*/}>
+                    onClick={() => {window.location.assign("/exposicio/" + params.data.id_exposicio)}}>
                     Edita
                 </Button>
             </div>
@@ -40,6 +40,7 @@ export default class Exposicions extends Component {
                 {headerName: "", cellRendererFramework:pintaBoto, maxWidth:100},
                 {headerName: "", cellRendererFramework:pintaBotoBorrar, maxWidth:100}
             ],
+            id_exposicio : -1
         }
     }
     
@@ -65,6 +66,18 @@ export default class Exposicions extends Component {
     render() {
         return (
             <div className="ag-theme-alpine" style={{ height: 600, width: '100%' }}>
+                <div className='row'>
+                <div className="row"><div className="col-md-4">&nbsp;</div></div>
+                    <div className="col-md-4">
+                        <Button variant='success'
+                            onClick={() => {window.location.assign("/exposicio/" + this.state.id_exposicio)}}>
+                            Afegir nova
+                        </Button>
+                    </div>
+                    <div className="col-md-4">
+                        <h1>Llistat de exposicions</h1>
+                    </div>
+                </div>
                 <AgGridReact
                     rowData={this.state.exposicions}
                     columnDefs={this.state.columnes}
