@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Image, Container } from "react-bootstrap";
 import axios from 'axios';
+import Select from './Select';
 
 export default class Exposicio extends Component {
     constructor(props) {
@@ -111,6 +112,10 @@ export default class Exposicio extends Component {
         })
     }
 
+    onChangeEspai = (v) => {
+        this.setState({ id_espai: v});
+    }
+
     render() {
         return (
             <Container>
@@ -132,8 +137,12 @@ export default class Exposicio extends Component {
                     </div>
                     <div className="col-md-2">
                         <div className="form-group">
-                            <label>Codi espai:</label>
-                            <input type="number" className='form-control' name='id_espai' value={this.state.id_espai} onChange={this.onChange} />
+                            <label>Espai:</label>
+                            <Select canviar={this.onChangeEspai}
+                                valorInicial={this.state.id_espai}
+                                clau="id_espai"
+                                display="nom_espai"
+                                url='http://baleart.projectebaleart.com/public/api/espais' />
                         </div>
                     </div>
                 </div>
