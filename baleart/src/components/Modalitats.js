@@ -10,11 +10,21 @@ export default class Modalitats extends Component {
     constructor(props) {
         super(props);
 
+        const botoEsborrar = (params) => {
+            return <div>
+                <Button variant='danger' size="sm"
+                    onClick={() => { window.location.assign("/modalitat/" + params.data.id_modalitat); }}>
+                    Borrar
+                </Button>
+            </div>
+        }
+
         this.state = {
             modalitats: [],
             columnes: [
                 { field: "id_modalitat", headerName: "CODI", sortable: true, filter: true },
                 { field: "descripcio_modalitat_ca", headerName: "DESCRIPCIÓ", sortable: true, filter: true, floatingFilter: true },
+                { field: 'id_modalitat', headerName: '', cellRendererFramework: botoEsborrar, maxWidth: 100 }
             ],
         }
     }
@@ -38,12 +48,12 @@ export default class Modalitats extends Component {
 
     render() {
         return (
-            <div className="ag-theme-alpine" style={{ height: "100%", width: "100%" }}>
+            <div className="ag-theme-alpine" style={{ height: 600, width: "100%" }}>
                 <AgGridReact
                     rowData={this.state.modalitats}
                     columnDefs={this.state.columnes}
                     pagination={true}
-                    paginationPageSize={5}>
+                    paginationPageSize={10}>
                 </AgGridReact>
             </div>
         );

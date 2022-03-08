@@ -15,6 +15,10 @@ export default class Espai extends Component {
             web: "",
             descripcio_espai_ca: "",
             imatge: "",
+            id_usuari: "",
+            id_tipus: "",
+            id_municipi: "",
+            id_servei: ""
         }
     }
 
@@ -40,7 +44,11 @@ export default class Espai extends Component {
                     telefon: response.data.telefon,
                     web: response.data.web,
                     descripcio_espai_ca: response.data.descripcio_espai_ca,
-                    imatge: response.data.imatge
+                    imatge: response.data.imatge,
+                    id_usuari: response.data.id_usuari,
+                    id_tipus: response.data.id_tipus,
+                    id_municipi: response.data.id_municipi,
+                    id_servei: response.data.id_servei
                 });
             })
             .catch(function (error) {
@@ -51,21 +59,24 @@ export default class Espai extends Component {
 
     update = () => {
         //Modificar les dades a la api
-        let formData = new FormData();
+        let formData = new URLSearchParams();
         formData.append("nom_espai", this.state.nom_espai);
         formData.append("direccio", this.state.direccio);
         formData.append("email", this.state.email);
         formData.append("telefon", this.state.telefon);
         formData.append("web", this.state.web);
         formData.append("descripcio_espai_ca", this.state.descripcio_espai_ca);
-        formData.append("imatge", this.state.imatge);
+        formData.append("id_usuari", this.state.id_usuari);
+        formData.append("id_tipus", this.state.id_tipus);
+        formData.append("id_municipi", this.state.id_municipi);
+        formData.append("id_servei", this.state.id_servei);
         //Token
         const config = {
             headers: { Authorization: 'Bearer ' + sessionStorage.getItem("token") }
             //headers: { Authorization: 'Bearer ' + "token"}
         };
-        axios.put('http://baleart.projectebaleart.com/public/api/autors/' + this.state.id_espai, config,
-            formData,
+        axios.put('http://baleart.projectebaleart.com/public/api/espais/' + this.state.id_espai, formData,
+            config,
         ).then(response => {
             console.log(response);
             alert("Modificació feta amb èxit!");
@@ -73,6 +84,25 @@ export default class Espai extends Component {
         ).catch(error => {
             console.log(error);
         });
+    }
+
+    updateFoto = () => {
+        let formData = new FormData();
+        formData.append("imatge", this.state.imatge);
+        //Token
+        const config = {
+            headers: { Authorization: 'Bearer ' + sessionStorage.getItem("token") }
+            //headers: { Authorization: 'Bearer ' + "token"}
+        };
+        axios.post('http://baleart.projectebaleart.com/public/api/espais/' + this.state.id_espai + "/imatge", formData,
+            config,
+        ).then(response => {
+            console.log(response);
+            alert("Imatge pujada amb èxit!");
+        }
+        ).catch(error => {
+            console.log(error);
+        })
     }
 
     onChange = (e) => {
@@ -124,13 +154,13 @@ export default class Espai extends Component {
                 </div>
                 <div className="row"><div className="col-md-4">&nbsp;</div></div>
                 <div className='row'>
-                    <div className="col-md-4">
+                    <div className="col-md-3">
                         <div className="form-group">
                             <label>Telèfon:</label>
                             <input type="text" className='form-control' name='telefon' value={this.state.telefon} onChange={this.onChange} />
                         </div>
                     </div>
-                    <div className="col-md-4">
+                    <div className="col-md-3">
                         <div className="form-group">
                             <label>Web:</label>
                             <input type="text" className='form-control' name='web' value={this.state.web} onChange={this.onChange} />
@@ -142,6 +172,13 @@ export default class Espai extends Component {
                             <input type="file" onChange={this.onChangeFoto} className="form-control" />
                         </div>
                     </div>
+                    <div className="col-md-2">
+                        <div className="form-group">
+                            <input type="submit" className="btn btn-primary"
+                                value={"Modifica"} onClick={this.updateFoto} />
+                        </div>
+
+                    </div>
                 </div>
                 <div className="row"><div className="col-md-4">&nbsp;</div></div>
                 <div className='row'>
@@ -149,6 +186,32 @@ export default class Espai extends Component {
                         <div className="form-group">
                             <label>Descripció:</label>
                             <textarea value={this.state.descripcio_espai_ca} className='form-control' name="descripcio_espai_ca" onChange={this.onChange} />
+                        </div>
+                    </div>
+                </div>
+                <div className="row"><div className="col-md-4">&nbsp;</div></div>
+                <div className="row">
+                    <div className="col-md-3">
+                        <div className="form-group">
+                            <label>ID Usuari:</label>
+                            <input type="number" className='form-control' name='id_usuari' value={this.state.id_usuari} onChange={this.onChange} />
+                        </div>
+                    </div>
+                    <div className="col-md-3">
+                        <div className="form-group">
+                            <label>ID Tipus:</label>
+                            <input type="number" className='form-control' name='id_tipus' value={this.state.id_tipus} onChange={this.onChange} />
+                        </div>
+                    </div>
+                    <div className="col-md-3">
+                        <div className="form-group">
+                            <label>ID Municipi:</label>
+                            <input type="number" className='form-control' name='id_municipi' value={this.state.id_municipi} onChange={this.onChange} />
+                        </div>
+                    </div><div className="col-md-3">
+                        <div className="form-group">
+                            <label>ID Servei:</label>
+                            <input type="number" className='form-control' name='id_servei' value={this.state.id_servei} onChange={this.onChange} />
                         </div>
                     </div>
                 </div>

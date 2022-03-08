@@ -22,7 +22,7 @@ export default class Espais extends Component {
         const pintaBotoEsborrar = (params) => {
             return <div>
                 <Button variant='danger' size="sm"
-                    onClick={() => { window.location.assign("/autor/" + params.data.id_autor); }}>
+                    onClick={() => { window.location.assign("/espai/" + params.data.id_espai); }}>
                     Borrar
                 </Button>
             </div>
