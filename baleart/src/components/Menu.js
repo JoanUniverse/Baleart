@@ -9,6 +9,7 @@ import Autors from './Autors';
 import Espais from './Espais';
 import Exposicions from './Exposicions';
 import Modalitats from './Modalitats';
+import Exposicio from './Exposicio';
 import Autor from './Autor';
 import Espai from './Espai';
 export default class Menu extends Component {
@@ -29,8 +30,8 @@ export default class Menu extends Component {
                             <NavLink className="nav-link" to="/usuaris" >Usuaris</NavLink>
                         </Nav>
 
-                        <input className='form-control mr-sm-2' type="search" placeholder="Cercar espai..." aria-label="Search"></input>
-                        <button className='btn btn-outline-success my-2 my-sm-0' type="submit">Cercar</button>
+                        <input className="form-control mr-sm-2" type="search" placeholder="Cercar espai..." aria-label="Search"></input>
+                        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Cercar</button>
 
                         <Nav className="mr-auto">
                             <NavLink className="nav-link" to="/autors" >Perfil</NavLink>
@@ -42,6 +43,7 @@ export default class Menu extends Component {
                     <Route path='/autor/:id_autor' element={<CridaAutor />} />
                     {/* <Route path="/comentaris" element={<Comentaris />} /> */}
                     <Route path='/espais' element={<Espais />} />
+                    <Route path='/exposicio/:id_exposicio' element={<CridaExposicio />} />
                     <Route path='/espai/:id_espai' element={<CridaEspai />} />
                     <Route path='/exposicions' element={<Exposicions />} />
                     <Route path='/modalitats' element={<Modalitats />} />
@@ -55,6 +57,11 @@ export default class Menu extends Component {
         )
     }
 }
+
+
+function CridaExposicio(){
+    let params = useParams();
+    return <Exposicio id_exposicio={params.id_exposicio}/>
 
 function CridaAutor() {
     let params = useParams();
