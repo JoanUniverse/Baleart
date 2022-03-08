@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button, Container, ListGroup } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import axios from 'axios';
 import { AgGridReact } from 'ag-grid-react';
 
@@ -40,7 +40,7 @@ export default class Modalitats extends Component {
             })
             .catch(function (error) {
                 console.log("ERROR -> " + error.response.data.error);
-                if (error.response.status == 401) {
+                if (error.response.status === 401) {
                     //window.location.assign("/login");
                 }
             })

@@ -19,10 +19,14 @@ export default class Autors extends Component {
             </div>
         }
 
-        const botoEsborrar = () => {
+        const botoEsborrar = (params) => {
             return <div>
                 <Button variant='danger' size="sm"
-                    onClick={this.delete}>
+                    onClick={() => {
+                        if (window.confirm("Segur que vols borrar l'autor?")) {
+                            this.borrar(params.data.id_autor);
+                        }
+                    }}>
                     Borrar
                 </Button>
             </div>
@@ -44,6 +48,10 @@ export default class Autors extends Component {
     }
 
     componentDidMount() {
+        this.descarrega();
+    }
+
+    descarrega = () => {
         const config = {
             headers: { Authorization: 'Bearer ' + sessionStorage.getItem("token") }
             //headers: { Authorization: 'Bearer ' + "token"}
@@ -61,18 +69,17 @@ export default class Autors extends Component {
             })
     }
 
-    delete = (id_autor) => {
+    borrar = (id_autor) => {
         const config = {
             headers: { Authorization: 'Bearer ' + sessionStorage.getItem("token") }
         };
         axios.delete('http://baleart.projectebaleart.com/public/api/autors/' + id_autor, config
         ).then(response => {
             console.log(response);
-            alert("Autor esborrat amb èxit!");
+            this.descarrega();
         })
             .catch(error => {
                 console.log(error);
-
             })
     }
 

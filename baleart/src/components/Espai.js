@@ -154,13 +154,13 @@ export default class Espai extends Component {
                 </div>
                 <div className="row"><div className="col-md-4">&nbsp;</div></div>
                 <div className='row'>
-                    <div className="col-md-3">
+                    <div className="col-md-2">
                         <div className="form-group">
                             <label>Telèfon:</label>
                             <input type="text" className='form-control' name='telefon' value={this.state.telefon} onChange={this.onChange} />
                         </div>
                     </div>
-                    <div className="col-md-3">
+                    <div className="col-md-2">
                         <div className="form-group">
                             <label>Web:</label>
                             <input type="text" className='form-control' name='web' value={this.state.web} onChange={this.onChange} />
@@ -172,12 +172,15 @@ export default class Espai extends Component {
                             <input type="file" onChange={this.onChangeFoto} className="form-control" />
                         </div>
                     </div>
-                    <div className="col-md-2">
+                </div>
+                <div className="row"><div className="col-md-4">&nbsp;</div></div>
+                <div className="row">
+                    <div className="col-md-5"></div>
+                    <div className="col-md-5">
                         <div className="form-group">
                             <input type="submit" className="btn btn-primary"
-                                value={"Modifica"} onClick={this.updateFoto} />
+                                value={"Actualitza foto"} onClick={this.updateFoto} />
                         </div>
-
                     </div>
                 </div>
                 <div className="row"><div className="col-md-4">&nbsp;</div></div>
