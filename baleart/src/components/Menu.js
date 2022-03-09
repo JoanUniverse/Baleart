@@ -17,7 +17,8 @@ import Tipus from './Tipus';
 import Serveis from './Serveis';
 import Comentari from './Comentari';
 import Obra from './Obra';
-
+import Modalitat from './Modalitat';
+import PerfilUsuari from './PerfilUsuari';
 export default class Menu extends Component {
     render() {
         return (
@@ -25,7 +26,6 @@ export default class Menu extends Component {
                 <Navbar bg="dark" className="color-nav" variant="dark" expand="lg" sticky="top">
                     <Container>
                         <Nav className="mr-auto">
-
                             <NavLink className="nav-link" to="/autors" >Autors</NavLink>
                             <NavLink className="nav-link" to="/comentaris" >Comentaris</NavLink>
                             <NavLink className="nav-link" to="/espais" >Espais</NavLink>
@@ -41,7 +41,7 @@ export default class Menu extends Component {
                         <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Cercar</button>
 
                         <Nav className="mr-auto">
-                            <NavLink className="nav-link" to="/autors" >Perfil</NavLink>
+                            <NavLink className="nav-link" to="/perfilUsuari" >Perfil</NavLink>
                         </Nav>
                     </Container>
                 </Navbar>
@@ -51,20 +51,22 @@ export default class Menu extends Component {
                     <Route path='/comentaris' element={<Comentaris />} />
                     <Route path='/comentari/:id_comentari' element={<CridaComentari />} />
                     <Route path='/espais' element={<Espais />} />
-                    <Route path='/exposicio/:id_exposicio' element={<CridaExposicio />} />
                     <Route path='/espai/:id_espai' element={<CridaEspai />} />
+                    <Route path='/exposicio/:id_exposicio' element={<CridaExposicio />} />
                     <Route path='/exposicions' element={<Exposicions />} />
                     <Route path='/modalitats' element={<CridaModalitats />} />
-                    {<Route path="/obres" element={<Obres />} />}
+                    <Route path="/obres" element={<Obres />} />
                     <Route path='/obra/:id_obra' element={<CridaObres />} />
-                    { <Route path='/serveis' element={<Serveis />} /> }
-                    { <Route path='/tipus' element={<Tipus />} /> }
-                    {/* <Route path='/usuaris' element={<Usuaris />} /> */}
+                    <Route path='/serveis' element={<Serveis />} /> 
+                    <Route path='/tipus' element={<Tipus />} />
+                    <Route path='/usuaris' element={<Usuaris />} />
+                    <Route path='/modalitat/:id_modalitat' element={<CridaModalitat />} />
+                    <Route path='/perfilUsuari' element={<PerfilUsuari />} />
                 </Routes>
-                </BrowserRouter>
-        )}
+            </BrowserRouter>
+        )
+    }
 }
-
 
 function CridaExposicio() {
     let params = useParams();
@@ -80,21 +82,20 @@ function CridaAutor() {
 function CridaEspai() {
     let params = useParams();
     return <Espai id_espai={params.id_espai} />
-
 }
+    
 function CridaComentari() {
     let params = useParams();
     return <Comentari id_comentari={params.id_comentari} />
-
-}
-function CridaModalitats() {
-    let params = useParams();
-    return <Modalitats nom_modalitat={params.nom_modalitat} />
 
 }
 
 function CridaObres() {
     let params = useParams();
     return <Obra id_obra={params.id_obra} />
-
+}
+    
+function CridaModalitat() {
+    let params = useParams();
+    return <Modalitat id_modalitat={params.id_modalitat} />
 }

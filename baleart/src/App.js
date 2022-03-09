@@ -15,12 +15,11 @@ import Espai from './components/Espai';
 
 function App() {
   console.log(sessionStorage.getItem("token"));
-  if(sessionStorage.getItem("token") != "" && sessionStorage.getItem("token") != null){
-    return <Menu/>
-  } else{
-    return <Login/>
+  if (sessionStorage.getItem("token") != "" && sessionStorage.getItem("token") != null) {
+    return <Menu />
+  } else {
+    return <Login />
   }
-
 }
 
 export default App;

@@ -10,10 +10,14 @@ export default class Modalitats extends Component {
     constructor(props) {
         super(props);
 
-        const botoEsborrar = (params) => {
+        const pintaBotoEsborrar = (params) => {
             return <div>
                 <Button variant='danger' size="sm"
-                    onClick={() => { window.location.assign("/modalitat/" + params.data.id_modalitat); }}>
+                    onClick={() => {
+                        if (window.confirm("Segur que vols borrar la modalitat?")) {
+                            this.borrar(params.data.id_modalitat);
+                        }
+                    }}>
                     Borrar
                 </Button>
             </div>
@@ -24,11 +28,15 @@ export default class Modalitats extends Component {
             columnes: [
                 { field: "id_modalitat", headerName: "CODI", sortable: true, filter: true },
                 { field: "descripcio_modalitat_ca", headerName: "DESCRIPCIÓ", sortable: true, filter: true, floatingFilter: true },
-                { field: 'id_modalitat', headerName: '', cellRendererFramework: botoEsborrar, maxWidth: 100 }
+                { field: 'id_modalitat', headerName: '', cellRendererFramework: pintaBotoEsborrar, maxWidth: 100 }
             ],
         }
     }
     componentDidMount() {
+        this.descarrega();
+    }
+
+    descarrega = () => {
         const config = {
             headers: { Authorization: 'Bearer ' + sessionStorage.getItem("token") }
             //headers: { Authorization: 'Bearer ' + "token"}
@@ -46,9 +54,35 @@ export default class Modalitats extends Component {
             })
     }
 
+    borrar = (id_modalitat) => {
+        const config = {
+            headers: { Authorization: 'Bearer ' + sessionStorage.getItem("token") }
+        };
+        axios.delete('http://baleart.projectebaleart.com/public/api/modalitats/' + id_modalitat, config
+        ).then(response => {
+            console.log(response);
+            this.descarrega();
+        })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
     render() {
         return (
             <div className="ag-theme-alpine" style={{ height: 600, width: "100%" }}>
+                <div className='row'>
+                    <div className="row"><div className="col-md-4">&nbsp;</div></div>
+                    <div className="col-md-4">
+                        <Button variant='success'
+                            onClick={() => { window.location.assign("/modalitat/-1"); }}>
+                            Afegir nova modalitat
+                        </Button>
+                    </div>
+                    <div className="col-md-4">
+                        <h1>Llistat de modalitats</h1>
+                    </div>
+                </div>
                 <AgGridReact
                     rowData={this.state.modalitats}
                     columnDefs={this.state.columnes}

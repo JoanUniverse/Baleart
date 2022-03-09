@@ -19,7 +19,7 @@ export default class Autors extends Component {
             </div>
         }
 
-        const botoEsborrar = (params) => {
+        const pintaBotoEsborrar = (params) => {
             return <div>
                 <Button variant='danger' size="sm"
                     onClick={() => {
@@ -41,7 +41,7 @@ export default class Autors extends Component {
                 { field: "nacionalitat", headerName: "NACIONALITAT", sortable: true, filter: true, },
                 { field: "biografia", headerName: "BIOGRAFIA", sortable: true, filter: true, resizable: true },
                 { field: 'id_autor', headerName: '', cellRendererFramework: pintaBoto, maxWidth: 100 },
-                { field: 'id_autor', headerName: '', cellRendererFramework: botoEsborrar, maxWidth: 100 }
+                { field: 'id_autor', headerName: '', cellRendererFramework: pintaBotoEsborrar, maxWidth: 100 }
             ],
             id_autor: -1,
         }
@@ -54,7 +54,6 @@ export default class Autors extends Component {
     descarrega = () => {
         const config = {
             headers: { Authorization: 'Bearer ' + sessionStorage.getItem("token") }
-            //headers: { Authorization: 'Bearer ' + "token"}
         };
         axios.get('http://baleart.projectebaleart.com/public/api/autors', config)
             .then(response => {
