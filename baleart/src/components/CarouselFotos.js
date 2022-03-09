@@ -60,6 +60,7 @@ export default class CarouselFotos extends Component {
           }}>
             <Carousel
               data={this.state.fotos}
+              time={0}
               width="850px"
               height="500px"
               captionStyle={this.state.captionStyle}
