@@ -11,10 +11,6 @@ export default class Login extends Component {
         }
     }
 
-    componentDidMount(){
-
-    }
-
     login = () => {
         let formData = new FormData();
         formData.append("email_usuari", this.state.email);
@@ -23,12 +19,15 @@ export default class Login extends Component {
         ).then(resposta => {
             console.log(resposta);
             sessionStorage.setItem("token", resposta.data.result);
+            sessionStorage.setItem("id_usuari", resposta.data.id_usuari);
             window.location.assign("/");
             console.log(sessionStorage.getItem("token"));
+            console.log(sessionStorage.getItem("id_usuari"));
         }
         ).catch(error => {
             console.log(error);
             sessionStorage.setItem("token", "");
+            sessionStorage.setItem("id_usuari", "");
         })
     }
 
