@@ -19,10 +19,14 @@ export default class Autors extends Component {
             </div>
         }
 
-        const botoEsborrar = () => {
+        const pintaBotoEsborrar = (params) => {
             return <div>
                 <Button variant='danger' size="sm"
-                    onClick={this.delete}>
+                    onClick={() => {
+                        if (window.confirm("Segur que vols borrar l'autor?")) {
+                            this.borrar(params.data.id_autor);
+                        }
+                    }}>
                     Borrar
                 </Button>
             </div>
@@ -37,16 +41,19 @@ export default class Autors extends Component {
                 { field: "nacionalitat", headerName: "NACIONALITAT", sortable: true, filter: true, },
                 { field: "biografia", headerName: "BIOGRAFIA", sortable: true, filter: true, resizable: true },
                 { field: 'id_autor', headerName: '', cellRendererFramework: pintaBoto, maxWidth: 100 },
-                { field: 'id_autor', headerName: '', cellRendererFramework: botoEsborrar, maxWidth: 100 }
+                { field: 'id_autor', headerName: '', cellRendererFramework: pintaBotoEsborrar, maxWidth: 100 }
             ],
             id_autor: -1,
         }
     }
 
     componentDidMount() {
+        this.descarrega();
+    }
+
+    descarrega = () => {
         const config = {
             headers: { Authorization: 'Bearer ' + sessionStorage.getItem("token") }
-            //headers: { Authorization: 'Bearer ' + "token"}
         };
         axios.get('http://baleart.projectebaleart.com/public/api/autors', config)
             .then(response => {
@@ -61,18 +68,17 @@ export default class Autors extends Component {
             })
     }
 
-    delete = (id_autor) => {
+    borrar = (id_autor) => {
         const config = {
             headers: { Authorization: 'Bearer ' + sessionStorage.getItem("token") }
         };
         axios.delete('http://baleart.projectebaleart.com/public/api/autors/' + id_autor, config
         ).then(response => {
             console.log(response);
-            alert("Autor esborrat amb èxit!");
+            this.descarrega();
         })
             .catch(error => {
                 console.log(error);
-
             })
     }
 

@@ -19,10 +19,14 @@ export default class Espais extends Component {
             </div>
         }
 
-        const pintaBotoEsborrar = (params) => {
+        const pintaBotoBorrar = (params) => {
             return <div>
-                <Button variant='danger' size="sm"
-                    onClick={() => { window.location.assign("/espai/" + params.data.id_espai); }}>
+                <Button variant="danger" size="sm"
+                    onClick={() => {
+                        if (window.confirm("Segur vols borrar l'espai?")) {
+                            this.borrar(params.data.id_espai);
+                        }
+                    }}>
                     Borrar
                 </Button>
             </div>
@@ -50,14 +54,34 @@ export default class Espais extends Component {
                 { field: "id_municipi", headerName: "CODI MUNICIPI", sortable: true, filter: true, floatingFilter: true },
                 { field: "id_servei", headerName: "CODI SERVEI", sortable: true, filter: true, floatingFilter: true },
                 { field: 'id_espai', headerName: '', cellRendererFramework: pintaBoto, maxWidth: 100 },
-                { field: 'id_espai', headerName: '', cellRendererFramework: pintaBotoEsborrar, maxWidth: 100 }
+                { field: 'id_espai', headerName: '', cellRendererFramework: pintaBotoBorrar, maxWidth: 100 }
             ],
+            id_espai: -1,
         }
     }
-    componentDidMount() {
+
+    borrar = (id) => {
         const config = {
             headers: { Authorization: 'Bearer ' + sessionStorage.getItem("token") }
-            //headers: { Authorization: 'Bearer ' + "token"}
+        };
+        axios.delete('http://baleart.projectebaleart.com/public/api/espais/' + id, config)
+            .then(response => {
+                console.log(response);
+                this.descarrega();
+            })
+            .catch(function (error) {
+                //Mostrar error
+                console.log(error);
+            })
+    }
+
+    componentDidMount() {
+        this.descarrega();
+    }
+
+    descarrega = () => {
+        const config = {
+            headers: { Authorization: 'Bearer ' + sessionStorage.getItem("token") }
         };
         axios.get('http://baleart.projectebaleart.com/public/api/espais', config)
             .then(response => {
@@ -75,6 +99,18 @@ export default class Espais extends Component {
     render() {
         return (
             <div className="ag-theme-alpine" style={{ height: 600, width: "100%" }}>
+                <div className='row'>
+                    <div className="row"><div className="col-md-4">&nbsp;</div></div>
+                    <div className="col-md-4">
+                        <Button variant='success'
+                            onClick={() => { window.location.assign("/espai/" + this.state.id_espai); }}>
+                            Afegir nou espai
+                        </Button>
+                    </div>
+                    <div className="col-md-4">
+                        <h1>Llistat d'espais</h1>
+                    </div>
+                </div>
                 <AgGridReact
                     rowData={this.state.espais}
                     columnDefs={this.state.columnes}

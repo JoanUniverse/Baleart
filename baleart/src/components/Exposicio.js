@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Image, Container } from "react-bootstrap";
 import axios from 'axios';
+import Select from './Select';
 
 export default class Exposicio extends Component {
     constructor(props) {
@@ -47,6 +48,10 @@ export default class Exposicio extends Component {
     }
 
     enviaFormulari = () => {
+        if(this.state.id_espai === ""){
+            return alert("Tria un espai!");
+        } 
+        
         if (this.state.id_exposicio === ''){
             this.inserta();
         } else{
@@ -108,7 +113,11 @@ export default class Exposicio extends Component {
     onChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
-        })
+        })       
+    }
+
+    onChangeEspai = (v) => {
+        this.setState({ id_espai: v});
     }
 
     render() {
@@ -132,8 +141,12 @@ export default class Exposicio extends Component {
                     </div>
                     <div className="col-md-2">
                         <div className="form-group">
-                            <label>Codi espai:</label>
-                            <input type="number" className='form-control' name='id_espai' value={this.state.id_espai} onChange={this.onChange} />
+                            <label>Espai:</label>
+                            <Select canviar={this.onChangeEspai}
+                                valorInicial={this.state.id_espai}
+                                clau="id_espai"
+                                display="nom_espai"
+                                url='http://baleart.projectebaleart.com/public/api/espais' />
                         </div>
                     </div>
                 </div>
@@ -142,13 +155,13 @@ export default class Exposicio extends Component {
                     <div className="col-md-4">
                         <div className="form-group">
                             <label>Data inici:</label>
-                            <input value={this.state.data_inici} type="text" name='data_inici' onChange={this.onChange} className="form-control" />
+                            <input value={this.state.data_inici} type="datetime-local" name='data_inici' onChange={this.onChange} className="form-control" />
                         </div>
                     </div>
                     <div className="col-md-4">
                         <div className="form-group">
                             <label>Data fi:</label>
-                            <input value={this.state.data_fi} type="text" name='data_fi' onChange={this.onChange} className="form-control" />
+                            <input value={this.state.data_fi} type="datetime-local" name='data_fi' onChange={this.onChange} className="form-control" />
                         </div>
                     </div>
                     <div className="row"><div className="col-md-4">&nbsp;</div></div>
