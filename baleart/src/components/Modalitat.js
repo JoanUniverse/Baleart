@@ -37,29 +37,6 @@ export default class Modalitat extends Component {
             })
     }
 
-    update = () => {
-        //Modificar les dades a la api
-        let formData = new URLSearchParams();
-        formData.append("nom_autor", this.state.nom_autor);
-        formData.append("descripcio_modalitat_ca", this.state.descripcio_modalitat_ca);
-        //Token
-        const config = {
-            headers: {
-                Authorization: 'Bearer ' + sessionStorage.getItem("token"),
-                'content-type': 'application/x-www-form-urlencoded'
-            }
-        };
-        axios.put('http://baleart.projectebaleart.com/public/api/modalitats/' + this.state.id_modalitat, formData,
-            config,
-        ).then(response => {
-            console.log(response);
-            alert("Modificació feta amb èxit!");
-        }
-        ).catch(error => {
-            console.log(error);
-        });
-    }
-
     inserta = () => {
         //Modificar les dades a la api
         let formData = new FormData();
@@ -88,19 +65,11 @@ export default class Modalitat extends Component {
         })
     }
 
-    enviaFormulari = () => {
-        if (this.state.id_modalitat === '') {
-            this.inserta();
-        } else {
-            this.update();
-        }
-    }
-
     render() {
         return (
             <Container>
                 <hr />
-                <h2>{this.state.id_modalitat === '' ? "Insertar" : "Modifica"} una modalitat</h2>
+                <h2>Insertar una modalitat</h2>
                 <br />
                 <div className='row'>
                     <div className="col-md-2">
@@ -117,11 +86,10 @@ export default class Modalitat extends Component {
                     </div>
                     <div className="row"><div className="col-md-4">&nbsp;</div></div>
                     <div className="row">
-                        <div className="col-md-5"></div>
-                        <div className="col-md-5">
+                        <div className="col-md-1">
                             <div className="form-group">
                                 <input type="submit" className="btn btn-primary"
-                                    value={this.state.id_modalitat === '' ? "Insertar" : "Modifica"} onClick={this.enviaFormulari} />
+                                    value="Insertar" onClick={this.inserta} />
                             </div>
                         </div>
                     </div>

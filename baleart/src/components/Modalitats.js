@@ -10,15 +10,6 @@ export default class Modalitats extends Component {
     constructor(props) {
         super(props);
 
-        const pintaBoto = (params) => {
-            return <div>
-                <Button color="primary" size="sm"
-                    onClick={() => { window.location.assign("/modalitat/" + params.data.id_modalitat) }}>
-                    Edita
-                </Button>
-            </div>
-        }
-
         const pintaBotoEsborrar = (params) => {
             return <div>
                 <Button variant='danger' size="sm"
@@ -37,7 +28,6 @@ export default class Modalitats extends Component {
             columnes: [
                 { field: "id_modalitat", headerName: "CODI", sortable: true, filter: true },
                 { field: "descripcio_modalitat_ca", headerName: "DESCRIPCIÓ", sortable: true, filter: true, floatingFilter: true },
-                { field: 'id_modalitat', headerName: '', cellRendererFramework: pintaBoto, maxWidth: 100 },
                 { field: 'id_modalitat', headerName: '', cellRendererFramework: pintaBotoEsborrar, maxWidth: 100 }
             ],
         }
