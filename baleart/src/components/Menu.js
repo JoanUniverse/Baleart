@@ -12,6 +12,8 @@ import Modalitats from './Modalitats';
 import Exposicio from './Exposicio';
 import Autor from './Autor';
 import Espai from './Espai';
+import Usuaris from './Usuaris';
+import Usuari from './Usuari';
 export default class Menu extends Component {
     render() {
         return (
@@ -50,7 +52,8 @@ export default class Menu extends Component {
                     {/* <Route path="/obres" element={<Obres />} /> */}
                     {/* <Route path='/serveis' element={<Serveis />} /> */}
                     {/* <Route path='/tipus' element={<Tipus />} /> */}
-                    {/* <Route path='/usuaris' element={<Usuaris />} /> */}
+                    {<Route path='/usuaris' element={<Usuaris />} />}
+                    {<Route path='/usuari/:id_usuari' element={<CridaUsuari />} />}
                 </Routes>
             </BrowserRouter>
 
@@ -63,6 +66,12 @@ function CridaExposicio(){
     let params = useParams();
     return <Exposicio id_exposicio={params.id_exposicio}/>
 }
+
+function CridaUsuari(){
+    let params = useParams();
+    return <Usuari id_usuari={params.id_usuari}/>
+}
+
 function CridaAutor() {
     let params = useParams();
     return <Autor id_autor={params.id_autor} />
