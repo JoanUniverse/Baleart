@@ -14,6 +14,7 @@ import Exposicio from './Exposicio';
 import Autor from './Autor';
 import Espai from './Espai';
 import Modalitat from './Modalitat';
+import PerfilUsuari from './PerfilUsuari';
 export default class Menu extends Component {
     render() {
         return (
@@ -36,7 +37,7 @@ export default class Menu extends Component {
                         <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Cercar</button>
 
                         <Nav className="mr-auto">
-                            <NavLink className="nav-link" to="/autors" >Perfil</NavLink>
+                            <NavLink className="nav-link" to="/perfilUsuari" >Perfil</NavLink>
                         </Nav>
                     </Container>
                 </Navbar>
@@ -54,6 +55,7 @@ export default class Menu extends Component {
                     {/* <Route path='/serveis' element={<Serveis />} /> */}
                     {/* <Route path='/tipus' element={<Tipus />} /> */}
                     {/* <Route path='/usuaris' element={<Usuaris />} /> */}
+                    <Route path='/perfilUsuari' element={<PerfilUsuari />} />
                 </Routes>
             </BrowserRouter>
         )

@@ -8,7 +8,6 @@ import Registre from './components/Registre';
 import Modalitats from './components/Modalitats';
 import Autor from './components/Autor';
 import Espai from './components/Espai';
-import Menu from './components/Menu';
 // npm install react-router-dom
 // npm install react-bootstrap bootstrap
 // npm install axios
@@ -16,12 +15,11 @@ import Menu from './components/Menu';
 
 function App() {
   console.log(sessionStorage.getItem("token"));
-  if(sessionStorage.getItem("token") != "" && sessionStorage.getItem("token") != null){
-    return <Menu/>
-  } else{
-    return <Login/>
+  if (sessionStorage.getItem("token") != "" && sessionStorage.getItem("token") != null) {
+    return <Menu />
+  } else {
+    return <Login />
   }
-
 }
 
 export default App;
