@@ -12,7 +12,7 @@ import Menu from './components/Menu';
 // npm install react-bootstrap bootstrap
 // npm install axios
 // npm install --save ag-grid-community ag-grid-react
-
+// npm i react-carousel-minimal
 function App() {
   console.log(sessionStorage.getItem("token"));
   if(sessionStorage.getItem("token") != "" && sessionStorage.getItem("token") != null){

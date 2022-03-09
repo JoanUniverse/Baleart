@@ -14,6 +14,8 @@ import Autor from './Autor';
 import Espai from './Espai';
 import Usuaris from './Usuaris';
 import Usuari from './Usuari';
+import { Carousel } from 'react-carousel-minimal';
+import CarouselFotos from './CarouselFotos';
 export default class Menu extends Component {
     render() {
         return (
@@ -21,6 +23,7 @@ export default class Menu extends Component {
                 <Navbar bg="dark" className="color-nav" variant="dark" expand="lg" sticky="top">
                     <Container>
                         <Nav className="mr-auto">
+                            <NavLink className="nav-link" to="/" >Inici</NavLink>
                             <NavLink className="nav-link" to="/autors" >Autors</NavLink>
                             <NavLink className="nav-link" to="/comentaris" >Comentaris</NavLink>
                             <NavLink className="nav-link" to="/espais" >Espais</NavLink>
@@ -30,12 +33,12 @@ export default class Menu extends Component {
                             <NavLink className="nav-link" to="/serveis" >Serveis</NavLink>
                             <NavLink className="nav-link" to="/tipus" >Tipus</NavLink>
                             <NavLink className="nav-link" to="/usuaris" >Usuaris</NavLink>
-                        </Nav>
+                        {/* </Nav>
 
                         <input className="form-control mr-sm-2" type="search" placeholder="Cercar espai..." aria-label="Search"></input>
                         <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Cercar</button>
 
-                        <Nav className="mr-auto">
+                        <Nav className="mr-auto"> */}
                             <NavLink className="nav-link" to="/autors" >Perfil</NavLink>
                         </Nav>
                     </Container>
@@ -54,6 +57,7 @@ export default class Menu extends Component {
                     {/* <Route path='/tipus' element={<Tipus />} /> */}
                     {<Route path='/usuaris' element={<Usuaris />} />}
                     {<Route path='/usuari/:id_usuari' element={<CridaUsuari />} />}
+                    {<Route path='/' element={<CarouselFotos />} />}
                 </Routes>
             </BrowserRouter>
 
