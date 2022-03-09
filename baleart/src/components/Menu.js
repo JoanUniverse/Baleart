@@ -23,6 +23,7 @@ import Comentari from './Comentari';
 import Obra from './Obra';
 import Modalitat from './Modalitat';
 import PerfilUsuari from './PerfilUsuari';
+import Explora from './Explora';
 export default class Menu extends Component {
     render() {
         return (
@@ -31,6 +32,7 @@ export default class Menu extends Component {
                     <Container>
                         <Nav className="mr-auto">
                             <NavLink className="nav-link" to="/" >Inici</NavLink>
+                            <NavLink className="nav-link" to="/explora" >Explora</NavLink>
                             <NavLink className="nav-link" to="/autors" >Autors</NavLink>
                             <NavLink className="nav-link" to="/comentaris" >Comentaris</NavLink>
                             <NavLink className="nav-link" to="/espais" >Espais</NavLink>
@@ -63,6 +65,7 @@ export default class Menu extends Component {
                     <Route path='/obra/:id_obra' element={<CridaObres />} />
                     <Route path='/modalitat/:id_modalitat' element={<CridaModalitat />} />
                     <Route path='/perfilUsuari' element={<PerfilUsuari />} />
+                    <Route path='/explora' element={<Explora />} />
                 </Routes>
             </BrowserRouter>
         )

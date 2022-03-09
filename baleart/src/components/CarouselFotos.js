@@ -2,6 +2,7 @@ import { Carousel } from 'react-carousel-minimal';
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
+import Select from './Select';
 
 export default class CarouselFotos extends Component {
   constructor(props) {
@@ -29,14 +30,14 @@ export default class CarouselFotos extends Component {
         console.log(response);
         let cont = 0;
         response.data.forEach(espai => {
-          if(cont < 10){
+          if (cont < 10) {
             let nom = espai.nom_espai;
             let imatge = espai.imatge;
             let display = {
               image: imatge,
               caption: nom
             };
-            this.setState({fotos: this.state.fotos.concat(display)});
+            this.setState({ fotos: this.state.fotos.concat(display) });
           }
           cont++;
         });
