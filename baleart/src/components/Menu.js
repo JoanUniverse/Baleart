@@ -13,6 +13,10 @@ import Modalitats from './Modalitats';
 import Exposicio from './Exposicio';
 import Autor from './Autor';
 import Espai from './Espai';
+import Usuaris from './Usuaris';
+import Usuari from './Usuari';
+import { Carousel } from 'react-carousel-minimal';
+import CarouselFotos from './CarouselFotos';
 import Tipus from './Tipus';
 import Serveis from './Serveis';
 import Comentari from './Comentari';
@@ -26,6 +30,7 @@ export default class Menu extends Component {
                 <Navbar bg="dark" className="color-nav" variant="dark" expand="lg" sticky="top">
                     <Container>
                         <Nav className="mr-auto">
+                            <NavLink className="nav-link" to="/" >Inici</NavLink>
                             <NavLink className="nav-link" to="/autors" >Autors</NavLink>
                             <NavLink className="nav-link" to="/comentaris" >Comentaris</NavLink>
                             <NavLink className="nav-link" to="/espais" >Espais</NavLink>
@@ -35,12 +40,6 @@ export default class Menu extends Component {
                             <NavLink className="nav-link" to="/serveis" >Serveis</NavLink>
                             <NavLink className="nav-link" to="/tipus" >Tipus</NavLink>
                             <NavLink className="nav-link" to="/usuaris" >Usuaris</NavLink>
-                        </Nav>
-
-                        <input className="form-control mr-sm-2" type="search" placeholder="Cercar espai..." aria-label="Search"></input>
-                        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Cercar</button>
-
-                        <Nav className="mr-auto">
                             <NavLink className="nav-link" to="/perfilUsuari" >Perfil</NavLink>
                         </Nav>
                     </Container>
@@ -54,12 +53,14 @@ export default class Menu extends Component {
                     <Route path='/espai/:id_espai' element={<CridaEspai />} />
                     <Route path='/exposicio/:id_exposicio' element={<CridaExposicio />} />
                     <Route path='/exposicions' element={<Exposicions />} />
-                    <Route path='/modalitats' element={<CridaModalitats />} />
+                    <Route path='/modalitats' element={<Modalitats />} />
                     <Route path="/obres" element={<Obres />} />
-                    <Route path='/obra/:id_obra' element={<CridaObres />} />
-                    <Route path='/serveis' element={<Serveis />} /> 
+                    <Route path='/serveis' element={<Serveis />} />
                     <Route path='/tipus' element={<Tipus />} />
                     <Route path='/usuaris' element={<Usuaris />} />
+                    <Route path='/usuari/:id_usuari' element={<CridaUsuari />} />
+                    <Route path='/' element={<CarouselFotos />} />     
+                    <Route path='/obra/:id_obra' element={<CridaObres />} />
                     <Route path='/modalitat/:id_modalitat' element={<CridaModalitat />} />
                     <Route path='/perfilUsuari' element={<PerfilUsuari />} />
                 </Routes>
@@ -71,6 +72,11 @@ export default class Menu extends Component {
 function CridaExposicio() {
     let params = useParams();
     return <Exposicio id_exposicio={params.id_exposicio} />
+}
+
+function CridaUsuari(){
+    let params = useParams();
+    return <Usuari id_usuari={params.id_usuari}/>
 }
 
 
