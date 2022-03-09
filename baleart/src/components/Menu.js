@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 import { BrowserRouter, NavLink, Route, Routes, useParams } from "react-router-dom";
-//import Comentaris from './Comentaris';
-//import Obres from './Obres';
+import Comentaris from './Comentaris';
+import Obres from './Obres';
 import 'bootstrap/dist/css/bootstrap.min.css';
 //import 'bootstrap/dist/css/estilos.css';
 import { Nav, Navbar, Container } from "react-bootstrap";
@@ -13,6 +13,11 @@ import Modalitats from './Modalitats';
 import Exposicio from './Exposicio';
 import Autor from './Autor';
 import Espai from './Espai';
+import Tipus from './Tipus';
+import Serveis from './Serveis';
+import Comentari from './Comentari';
+import Obra from './Obra';
+
 export default class Menu extends Component {
     render() {
         return (
@@ -43,42 +48,21 @@ export default class Menu extends Component {
                 <Routes>
                     <Route path='/autors' element={<Autors />} />
                     <Route path='/autor/:id_autor' element={<CridaAutor />} />
-                    {/* <Route path="/comentaris" element={<Comentaris />} /> */}
+                    <Route path='/comentaris' element={<Comentaris />} />
+                    <Route path='/comentari/:id_comentari' element={<CridaComentari />} />
                     <Route path='/espais' element={<Espais />} />
                     <Route path='/exposicio/:id_exposicio' element={<CridaExposicio />} />
                     <Route path='/espai/:id_espai' element={<CridaEspai />} />
                     <Route path='/exposicions' element={<Exposicions />} />
-                    <Route path='/modalitats' element={<Modalitats />} />
-                    {/* <Route path="/obres" element={<Obres />} /> */}
-                    {/* <Route path='/serveis' element={<Serveis />} /> */}
-                    {/* <Route path='/tipus' element={<Tipus />} /> */}
+                    <Route path='/modalitats' element={<CridaModalitats />} />
+                    {<Route path="/obres" element={<Obres />} />}
+                    <Route path='/obra/:id_obra' element={<CridaObres />} />
+                    { <Route path='/serveis' element={<Serveis />} /> }
+                    { <Route path='/tipus' element={<Tipus />} /> }
                     {/* <Route path='/usuaris' element={<Usuaris />} /> */}
-
-                            <NavLink className="nav-link" to="/obres">Obres </NavLink>
-                            <NavLink className="nav-link" to="/comentaris" >Comentaris</NavLink>
-                            <NavLink className="nav-link" to="/comentaris" >Comentaris</NavLink>
-                            <NavLink className="nav-link" to="/comentaris" >Comentaris</NavLink>
-                            <NavLink className="nav-link" to="/comentaris" >Comentaris</NavLink>
-                            <NavLink className="nav-link" to="/comentaris" >Comentaris</NavLink>
-                            <NavLink className="nav-link" to="/comentaris" >Comentaris</NavLink>
-                            <NavLink className="nav-link" to="/comentaris" >Comentaris</NavLink>
-                            <NavLink className="nav-link" to="/comentaris" >Comentaris</NavLink>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        </Nav>
-                            <input class="form-control mr-sm-2" type="search" placeholder="Cercar espai..." aria-label="Search"></input>
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Cercar</button>
-                       
-                    </Container>
-                </Navbar>
-                <Routes>
-                    <Route path="/obres" element={<Obres />} />
-                    <Route path="/comentaris" element={<Comentaris />} />
-
                 </Routes>
-            </BrowserRouter>
-
-        )
-    }
-
+                </BrowserRouter>
+        )}
 }
 
 
@@ -96,5 +80,21 @@ function CridaAutor() {
 function CridaEspai() {
     let params = useParams();
     return <Espai id_espai={params.id_espai} />
+
+}
+function CridaComentari() {
+    let params = useParams();
+    return <Comentari id_comentari={params.id_comentari} />
+
+}
+function CridaModalitats() {
+    let params = useParams();
+    return <Modalitats nom_modalitat={params.nom_modalitat} />
+
+}
+
+function CridaObres() {
+    let params = useParams();
+    return <Obra id_obra={params.id_obra} />
 
 }
