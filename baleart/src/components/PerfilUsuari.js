@@ -52,7 +52,7 @@ export default class PerfilUsuari extends Component {
         formData.append("cognoms", this.state.cognoms);
         formData.append("email_usuari", this.state.email_usuari);
         formData.append("telefon_usuari", this.state.telefon_usuari);
-        formData.append("password", this.state.password);
+        //formData.append("password", this.state.password);
         //Token
         const config = {
             headers: {
@@ -117,7 +117,7 @@ export default class PerfilUsuari extends Component {
                     </div>
                 </div>
                 <div className="row"><div className="col-md-4">&nbsp;</div></div>
-                <div className='row'>
+                {/* <div className='row'>
                     <div className="col-md-5">
                         <div className="form-group">
                             <h4>Restableix la teva contrasenya</h4>
@@ -126,7 +126,7 @@ export default class PerfilUsuari extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="row"><div className="col-md-4">&nbsp;</div></div>
+                <div className="row"><div className="col-md-4">&nbsp;</div></div> */}
                 <div className="row">
                     <div className="col-md-1">
                         <div className="form-group">
