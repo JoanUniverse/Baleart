@@ -81,7 +81,7 @@ export default class Exposicions extends Component {
             .catch(function (error) {
                 console.log("ERROR -> " + error.response.data.error);
                 if(error.response.status == 401){
-                    //window.location.assign("/login");
+                    // window.location.assign("/");
                 }
             })
     }
