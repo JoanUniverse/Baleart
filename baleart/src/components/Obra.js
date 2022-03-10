@@ -57,6 +57,9 @@ export default class Obra extends Component {
         formData.append("any_data", this.state.any_data);
         formData.append("fotografia", this.state.fotografia);
         formData.append("descripcio_obra_ca", this.state.descripcio_obra_ca);
+        formData.append("id_modalitat", this.state.id_modalitat);
+        formData.append("id_exposicio", this.state.id_exposicio);
+        formData.append("id_autor", this.state.id_autor);
         //Token
         const config = {
             headers: { Authorization: 'Bearer ' + sessionStorage.getItem("token") }
@@ -79,6 +82,9 @@ export default class Obra extends Component {
         formData.append("any_data", this.state.any_data);
         formData.append("fotografia", this.state.fotografia);
         formData.append("descripcio_obra_ca", this.state.descripcio_obra_ca);
+        formData.append("id_modalitat", this.state.id_modalitat);
+        formData.append("id_autor", this.state.id_autor);
+        formData.append("id_exposicio", this.state.id_exposicio);
         //Token
         const config = {
             headers: {
@@ -106,7 +112,26 @@ export default class Obra extends Component {
             headers: { Authorization: 'Bearer ' + sessionStorage.getItem("token") }
             //headers: { Authorization: 'Bearer ' + "token"}
         };
-        axios.post('http://baleart.projectebaleart.com/public/api/obres/' + this.state.id_obra + "/fotografia", formData,
+        axios.post('http://baleart.projectebaleart.com/public/api/obres/' + this.state.id_obra + "/imatge", formData,
+            config,
+        ).then(response => {
+            console.log(response);
+            alert("Imatge pujada amb èxit!");
+        }
+        ).catch(error => {
+            console.log(error);
+        })
+    }
+
+    updateFoto = () => {
+        let formData = new FormData();
+        formData.append("fotografia", this.state.fotografia);
+        //Token
+        const config = {
+            headers: { Authorization: 'Bearer ' + sessionStorage.getItem("token") }
+            //headers: { Authorization: 'Bearer ' + "token"}
+        };
+        axios.post('http://baleart.projectebaleart.com/public/api/obres/' + this.state.id_obra + "/imatge", formData,
             config,
         ).then(response => {
             console.log(response);
@@ -122,14 +147,27 @@ export default class Obra extends Component {
             [e.target.name]: e.target.value
         })
     }
+
+    onChangeFoto = (e) => {
+        this.setState({
+            fotografia: e.target.files[0]
+        })
+    }
+
     onChangeObra = (v) => {
-        this.setState({ id_obra: v});
+        this.setState({ id_obra: v });
     }
+
     onChangeExposicio = (v) => {
-        this.setState({ id_exposicio: v});
+        this.setState({ id_exposicio: v });
     }
+
     onChangeModalitat = (v) => {
-        this.setState({ id_modalitat: v});
+        this.setState({ id_modalitat: v });
+    }
+
+    onChangeAutor = (v) => {
+        this.setState({ id_autor: v });
     }
 
     enviaFormulari = () => {
@@ -148,7 +186,7 @@ export default class Obra extends Component {
                 <br />
                 <div className='row'>
                     <div className="col-md-1">
-                    <div className="form-group">
+                        <div className="form-group">
                             <label>ID obra:</label>
                             <input type="text" className="form-control" value={this.state.id_obra} readOnly />
                         </div>
@@ -156,21 +194,36 @@ export default class Obra extends Component {
                     <div className="col-md-2">
                         <div className="form-group">
                             <label>Modalitat:</label>
+                            <br/>
                             <Select canviar={this.onChangeModalitat}
-                                valorInicial={this.state.modalitat}
+                                valorInicial={this.state.id_modalitat}
                                 clau="id_modalitat"
                                 display="nom_modalitat"
                                 url='http://baleart.projectebaleart.com/public/api/modalitats' />
                         </div>
                     </div>
-                       <div className="col-md-2">
+                    <div className="col-md-2">
                         <div className="form-group">
                             <label>Exposició:</label>
                             <Select canviar={this.onChangeExposicio}
-                                valorInicial={this.state.exposicio}
+                                valorInicial={this.state.id_exposicio}
                                 clau="id_exposicio"
                                 display="titol_expo"
                                 url='http://baleart.projectebaleart.com/public/api/exposicions' />
+                        </div>
+                    </div>
+                </div>
+                <div className="row"><div className="col-md-4">&nbsp;</div></div>
+                <div className='row'>
+                    <div className="col-md-2">
+                        <div className="form-group">
+                            <label>Autor:</label>
+                            <br/>
+                            <Select canviar={this.onChangeAutor}
+                                valorInicial={this.state.id_autor}
+                                clau="id_autor"
+                                display="nom_autor"
+                                url='http://baleart.projectebaleart.com/public/api/autors' />
                         </div>
                     </div>
                     <div className="col-md-3">
@@ -180,30 +233,40 @@ export default class Obra extends Component {
                         </div>
                     </div>
                     <div className="col-md-2">
-                        <Image src={this.state.imatge} width="125" height="125" rounded />
+                        <Image src={this.state.fotografia} width="125" height="125" rounded />
                     </div>
                 </div>
                 <div className="row"><div className="col-md-4">&nbsp;</div></div>
                 <div className='row'>
                     <div className="col-md-2">
                         <div className="form-group">
-                            <label>Any data:</label>
-                            <input type="text" className='form-control' name='any_data' value={this.state.any_data} onChange={this.onChange} />
+                            <label>Any:</label>
+                            <input type="datetime-local" className='form-control' name='any_data' value={this.state.any_data} onChange={this.onChange} />
                         </div>
                     </div>
                     <div className="col-md-2">
                         <div className="form-group">
-                            <label>descripcio de la obra:</label>
-                            <input type="text" className='form-control' name='web' value={this.state.web} onChange={this.onChange} />
+                            <label>Descripció de la obra:</label>
+                            <input type="text" className='form-control' name='descripcio_obra_ca' value={this.state.descripcio_obra_ca} onChange={this.onChange} />
                         </div>
                     </div>
                     <div className="col-md-4">
                         <div className="form-group">
-                            <label>fotografia:</label>
-                            <input type="file" onChange={this.onChange} className="form-control" />
+                            <label>Fotografia:</label>
+                            <input type="file" onChange={this.onChangeFoto} className="form-control" />
                         </div>
                     </div>
                 </div>
+                <div className="row">
+                    <div className="col-md-4"></div>
+                    <div className="col-md-4">
+                        <div className="form-group">
+                            <input type="submit" className="btn btn-primary"
+                                value={"Actualitza foto"} onClick={this.updateFoto} />
+                        </div>
+                    </div>
+                </div>
+                <div className="row"><div className="col-md-4">&nbsp;</div></div>
                 <div className="row">
                     <div className="col-md-5"></div>
                     <div className="col-md-5">

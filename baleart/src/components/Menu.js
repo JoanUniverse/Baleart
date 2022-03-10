@@ -63,12 +63,12 @@ export default class Menu extends Component {
                     <Route path='/exposicions' element={<Exposicions />} />
                     <Route path='/modalitats' element={<Modalitats />} />
                     <Route path="/obres" element={<Obres />} />
+                    <Route path='/obra/:id_obra' element={<CridaObres />} />
                     <Route path='/serveis' element={<Serveis />} />
                     <Route path='/tipus' element={<Tipus />} />
                     <Route path='/usuaris' element={<Usuaris />} />
                     <Route path='/usuari/:id_usuari' element={<CridaUsuari />} />
                     <Route path='/' element={<CarouselFotos />} />
-                    <Route path='/obra/:id_obra' element={<CridaObres />} />
                     <Route path='/modalitat/:id_modalitat' element={<CridaModalitat />} />
                     <Route path='/perfilUsuari' element={<PerfilUsuari />} />
                     <Route path='/explora' element={<Explora />} />
