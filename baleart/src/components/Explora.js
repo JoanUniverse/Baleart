@@ -67,7 +67,17 @@ export default class Explora extends Component {
         expos.forEach(element => {
             var titolExpo = document.createElement("h5");
             var data = document.createElement("h6");
-            data.appendChild(document.createTextNode("(" + element.data_inici + " - " + element.data_fi + ")"));
+
+            let i = element.data_inici.split(" ");
+            let f = element.data_fi.split(" ");
+            let iData = i[0].split("-");
+            let fData = f[0].split("-");
+            console.log(iData);
+            console.log(i);
+            let inici = iData[2] + "/" + iData[1] + "/" + iData[0];
+            let fi = fData[2] + "/" + fData[1] + "/" + fData[0];
+
+            data.appendChild(document.createTextNode("(" + inici + " - " + fi + ")"));
             titolExpo.appendChild(document.createTextNode(element.titol_expo));
             container.appendChild(titolExpo);
             container.appendChild(data);

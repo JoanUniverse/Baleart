@@ -33,16 +33,22 @@ export default class Menu extends Component {
                         <Nav className="mr-auto">
                             <NavLink className="nav-link" to="/" >Inici</NavLink>
                             <NavLink className="nav-link" to="/explora" >Explora</NavLink>
-                            <NavLink className="nav-link" to="/autors" >Autors</NavLink>
-                            <NavLink className="nav-link" to="/comentaris" >Comentaris</NavLink>
-                            <NavLink className="nav-link" to="/espais" >Espais</NavLink>
-                            <NavLink className="nav-link" to="/exposicions" >Exposicions</NavLink>
-                            <NavLink className="nav-link" to="/modalitats" >Modalitats</NavLink>
-                            <NavLink className="nav-link" to="/obres">Obres</NavLink>
-                            <NavLink className="nav-link" to="/serveis" >Serveis</NavLink>
-                            <NavLink className="nav-link" to="/tipus" >Tipus</NavLink>
-                            <NavLink className="nav-link" to="/usuaris" >Usuaris</NavLink>
-                            <NavLink className="nav-link" to="/perfilUsuari" >Perfil</NavLink>
+                            {sessionStorage.getItem("admin") == 1 ?
+                                <Nav className="mr-auto">
+                                    <NavLink className="nav-link" to="/autors" >Autors</NavLink>
+                                    <NavLink className="nav-link" to="/comentaris" >Comentaris</NavLink>
+                                    <NavLink className="nav-link" to="/espais" >Espais</NavLink>
+                                    <NavLink className="nav-link" to="/exposicions" >Exposicions</NavLink>
+                                    <NavLink className="nav-link" to="/modalitats" >Modalitats</NavLink>
+                                    <NavLink className="nav-link" to="/obres">Obres</NavLink>
+                                    <NavLink className="nav-link" to="/serveis" >Serveis</NavLink>
+                                    <NavLink className="nav-link" to="/tipus" >Tipus</NavLink>
+                                    <NavLink className="nav-link" to="/usuaris" >Usuaris</NavLink>
+                                    <NavLink className="nav-link" to="/perfilUsuari" >Perfil</NavLink>
+
+                                </Nav>
+                                : console.log(sessionStorage.getItem("admin"))}
+
                         </Nav>
                     </Container>
                 </Navbar>
@@ -61,7 +67,7 @@ export default class Menu extends Component {
                     <Route path='/tipus' element={<Tipus />} />
                     <Route path='/usuaris' element={<Usuaris />} />
                     <Route path='/usuari/:id_usuari' element={<CridaUsuari />} />
-                    <Route path='/' element={<CarouselFotos />} />     
+                    <Route path='/' element={<CarouselFotos />} />
                     <Route path='/obra/:id_obra' element={<CridaObres />} />
                     <Route path='/modalitat/:id_modalitat' element={<CridaModalitat />} />
                     <Route path='/perfilUsuari' element={<PerfilUsuari />} />
@@ -77,9 +83,9 @@ function CridaExposicio() {
     return <Exposicio id_exposicio={params.id_exposicio} />
 }
 
-function CridaUsuari(){
+function CridaUsuari() {
     let params = useParams();
-    return <Usuari id_usuari={params.id_usuari}/>
+    return <Usuari id_usuari={params.id_usuari} />
 }
 
 
@@ -92,7 +98,7 @@ function CridaEspai() {
     let params = useParams();
     return <Espai id_espai={params.id_espai} />
 }
-    
+
 function CridaComentari() {
     let params = useParams();
     return <Comentari id_comentari={params.id_comentari} />
@@ -103,7 +109,7 @@ function CridaObres() {
     let params = useParams();
     return <Obra id_obra={params.id_obra} />
 }
-    
+
 function CridaModalitat() {
     let params = useParams();
     return <Modalitat id_modalitat={params.id_modalitat} />
