@@ -24,6 +24,7 @@ import Obra from './Obra';
 import Modalitat from './Modalitat';
 import PerfilUsuari from './PerfilUsuari';
 import Explora from './Explora';
+import Login from './Login';
 export default class Menu extends Component {
     render() {
         return (
@@ -48,6 +49,7 @@ export default class Menu extends Component {
 
                                 </Nav>
                                 : console.log(sessionStorage.getItem("admin"))}
+                                <NavLink className="nav-link" to="/logout" >Logout</NavLink>
 
                         </Nav>
                     </Container>
@@ -72,6 +74,7 @@ export default class Menu extends Component {
                     <Route path='/modalitat/:id_modalitat' element={<CridaModalitat />} />
                     <Route path='/perfilUsuari' element={<PerfilUsuari />} />
                     <Route path='/explora' element={<Explora />} />
+                    <Route path='/logout' element={<Logout />} />
                 </Routes>
             </BrowserRouter>
         )
@@ -113,4 +116,11 @@ function CridaObres() {
 function CridaModalitat() {
     let params = useParams();
     return <Modalitat id_modalitat={params.id_modalitat} />
+}
+
+function Logout() {
+    sessionStorage.setItem("token", "");
+    sessionStorage.setItem("id_usuari", "");
+    sessionStorage.setItem("admin", "");
+    window.location.assign("/");
 }

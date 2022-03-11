@@ -58,11 +58,11 @@ export default class Explora extends Component {
     }
 
     onChangeEspai = (v) => {
-        this.setState({ id_espai: v});
+        this.setState({ id_espai: v });
         this.descarrega(v);
     }
 
-    carregaExposicions = (expos) =>{
+    carregaExposicions = (expos) => {
         var container = document.getElementById("expos");
         expos.forEach(element => {
             var titolExpo = document.createElement("h5");
@@ -109,7 +109,7 @@ export default class Explora extends Component {
             container.appendChild(document.createElement("br"));
             container.appendChild(document.createElement("br"));
         });
-        
+
     }
 
     render() {
@@ -119,7 +119,7 @@ export default class Explora extends Component {
                 <h2>Explora espais</h2>
                 <br />
                 <div className='row'>
-                <div className="col-md-2">
+                    <div className="col-md-2">
                         <div className="form-group">
                             <label>Espai:</label>
                             <Select canviar={this.onChangeEspai}
@@ -130,51 +130,54 @@ export default class Explora extends Component {
                         </div>
                     </div>
                 </div>
-                {this.state.id_espai === '' ? "" : 
+                {this.state.id_espai === '' ? "" :
                     <Container>
-                    <hr />
-                    <br />
-                    <div className='row'>
-                        <div className="col-md-5">
-                            <h1>{this.state.nom_espai}</h1>
-                        </div>
-                        <div className="col-md-3">
-                            <Image src={this.state.imatge} width="125" height="125" rounded />
-                        </div>
-                    </div>
-                    <div className="row"><div className="col-md-4">&nbsp;</div></div>
-                    <div className='row'>
-                    <div className="col-md-5">
-                        <h5>Contacte: </h5>
-                        <p>{this.state.telefon}</p>
-                        <p>{this.state.email}</p>
-                        <p>{this.state.web}</p>
-                        </div>
-                    <div className="col-md-4">
-                        <h5>Direcció: </h5>
-                        <p>{this.state.direccio}</p>
-                        <p>{this.state.municipi.nom_municipi}</p>
-                        </div>
-                    </div>
-                    <div className="row"><div className="col-md-4">&nbsp;</div></div>
-                    <div className='row'>
-                        <div className="col-md-8">
-                            <div className="form-group">
-                                <h5>Descripció:</h5>
-                                <p>{this.state.descripcio_espai_ca}</p>
+                        <hr />
+                        <br />
+                        <div className='row'>
+                            <div className="col-md-5">
+                                <h1>{this.state.nom_espai}</h1>
                             </div>
                         </div>
-                    </div>
-                    <div className="row"><div className="col-md-4">&nbsp;</div></div>
-                    <div className='row'>
-                        <div className="col-md-8">
-                            <div id='expos' className="form-group">
-                                <h4>Exposicions:</h4>
-                                
+                        <div className="row"><div className="col-md-4">&nbsp;</div></div>
+                        <div className='row'>
+                            <div className="col-md-6">
+                                <Image src={this.state.imatge} rounded />
+                            </div></div>
+                        <div className="row"><div className="col-md-4">&nbsp;</div></div>
+
+                        <div className='row'>
+                            <div className="col-md-5">
+                                <h5>Contacte: </h5>
+                                <p>{this.state.telefon}</p>
+                                <p>{this.state.email}</p>
+                                <p>{this.state.web}</p>
+                            </div>
+                            <div className="col-md-4">
+                                <h5>Direcció: </h5>
+                                <p>{this.state.direccio}</p>
+                                <p>{this.state.municipi.nom_municipi}</p>
                             </div>
                         </div>
-                    </div>
-                </Container>
+                        <div className="row"><div className="col-md-4">&nbsp;</div></div>
+                        <div className='row'>
+                            <div className="col-md-8">
+                                <div className="form-group">
+                                    <h5>Descripció:</h5>
+                                    <p>{this.state.descripcio_espai_ca}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="row"><div className="col-md-4">&nbsp;</div></div>
+                        <div className='row'>
+                            <div className="col-md-8">
+                                <div id='expos' className="form-group">
+                                    <h4>Exposicions:</h4>
+
+                                </div>
+                            </div>
+                        </div>
+                    </Container>
                 }
             </Container>
         )
